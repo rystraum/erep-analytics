@@ -4,7 +4,12 @@ class HomeController < ApplicationController
 
   def receive
     Item.create! params[:item]
-    redirect_to root_path
+
+    if request.xhr?
+      render text: "ok"
+    else
+      redirect_to root_path
+    end
   end
 end
 

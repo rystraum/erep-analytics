@@ -1,4 +1,4 @@
-# RailsAdmin config file. Generated on June 07, 2012 01:16
+# RailsAdmin config file. Generated on June 07, 2012 02:02
 # See github.com/sferik/rails_admin for more informations
 
 RailsAdmin.config do |config|
@@ -31,10 +31,10 @@ RailsAdmin.config do |config|
 
   #  ==> Included models
   # Add all excluded models here:
-  # config.excluded_models = [Admin]
+  # config.excluded_models = [Admin, Item]
 
   # Add models here if you want to go 'whitelist mode':
-  # config.included_models = [Admin]
+  # config.included_models = [Admin, Item]
 
   # Application wide tried label methods for models' instances
   # config.label_methods << :description # Default is [:name, :title]
@@ -94,6 +94,23 @@ RailsAdmin.config do |config|
   #     configure :last_sign_in_at, :datetime 
   #     configure :current_sign_in_ip, :string 
   #     configure :last_sign_in_ip, :string 
+  #     configure :created_at, :datetime 
+  #     configure :updated_at, :datetime   #   # Sections:
+  #   list do; end
+  #   export do; end
+  #   show do; end
+  #   edit do; end
+  #   create do; end
+  #   update do; end
+  # end
+  # config.model Item do
+  #   # Found associations:
+  #   # Found columns:
+  #     configure :id, :integer 
+  #     configure :country, :string 
+  #     configure :item_type, :string 
+  #     configure :item_quality, :string 
+  #     configure :data, :text 
   #     configure :created_at, :datetime 
   #     configure :updated_at, :datetime   #   # Sections:
   #   list do; end
