@@ -3,6 +3,7 @@ class HomeController < ApplicationController
   end
 
   def receive
+    Item.create! params[:item]
     redirect_to root_path
   end
 end
