@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  country: MyString
+  item_type: MyString
+  item_quality: MyString
+  data: MyText
+
+two:
+  country: MyString
+  item_type: MyString
+  item_quality: MyString
+  data: MyText
