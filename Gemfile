@@ -9,7 +9,7 @@ gem 'paperclip'
 gem 'devise' # rails g devise:install
 gem 'jquery-rails'
 gem 'acts_as_commentable_with_threading' # set up: rails generate acts_as_commentable_with_threading_migration
-gem 'rails_admin' # rails g rails_admin:install
+gem 'rails_admin', '= 0.0.3' # rails g rails_admin:install
 gem 'thin'
 
 group :assets do
