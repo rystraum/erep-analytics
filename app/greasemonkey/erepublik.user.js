@@ -27,7 +27,7 @@ console.log(item_quality);
 var table = document.getElementById("marketplace").getElementsByTagName("table")[0].getElementsByTagName("tbody")[0];
 
 if (table) {
-  table = table.innerHTML;
+  table = escape(table.innerHTML);
   GM_xmlhttpRequest({
     method: "POST",
     url: "http://erep.webbyapp.com/receive",
