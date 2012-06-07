@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120606172835) do
+ActiveRecord::Schema.define(:version => 20120607182634) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -38,6 +38,18 @@ ActiveRecord::Schema.define(:version => 20120606172835) do
     t.text     "data"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  end
+
+  create_table "posts", :force => true do |t|
+    t.datetime "record_date"
+    t.string   "poster_id"
+    t.integer  "stock"
+    t.decimal  "price",        :precision => 15, :scale => 5
+    t.integer  "item_code"
+    t.integer  "item_quality"
+    t.integer  "country_id"
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
   end
 
   create_table "rails_admin_histories", :force => true do |t|

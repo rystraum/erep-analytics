@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  record_date: 2012-06-08 02:26:34
+  poster_id: MyString
+  stock: 1
+  price: 9.99
+  item_code: 1
+  item_quality: 1
+  country_id: 1
+
+two:
+  record_date: 2012-06-08 02:26:34
+  poster_id: MyString
+  stock: 1
+  price: 9.99
+  item_code: 1
+  item_quality: 1
+  country_id: 1
