@@ -51,5 +51,9 @@ class Item < ActiveRecord::Base
       end
     end
   end
+
+  def record_date
+    created_at
+  end
 end
 

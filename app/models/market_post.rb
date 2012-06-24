@@ -3,5 +3,7 @@ class MarketPost < ActiveRecord::Base
   belongs_to :country
   belongs_to :merchandise
   belongs_to :item
+
+  delegate :record_date, to: :item
 end
 
