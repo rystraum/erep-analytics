@@ -11,7 +11,7 @@ gem 'jquery-rails'
 gem 'acts_as_commentable_with_threading' # set up: rails generate acts_as_commentable_with_threading_migration
 gem 'rails_admin', '= 0.0.3' # rails g rails_admin:install
 gem 'thin'
-gem 'spawn'
+gem "spawn", :git => 'git://github.com/rfc2822/spawn'
 gem 'nokogiri'
 
 group :assets do
