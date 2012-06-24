@@ -36,7 +36,7 @@ class Item < ActiveRecord::Base
       merchandise = Merchandise.find_by_erep_item_code_and_quality(item_type,item_quality) || Merchandise.create(erep_item_code: item_type, quality: item_quality)
       country = Country.find_or_create_by_erep_country_id(country)
 
-      spawn(nice: 19, kill: true) do
+      spawn_block({nice: 19, kill: true}) do
         market_data = parse_data
 
         post = nil
