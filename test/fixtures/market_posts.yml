@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  merchandise: 
+  country: 
+  provider: MyString
+  stock: 1
+  price: 9.99
+
+two:
+  merchandise: 
+  country: 
+  provider: MyString
+  stock: 1
+  price: 9.99

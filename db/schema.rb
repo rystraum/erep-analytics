@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120624060649) do
+ActiveRecord::Schema.define(:version => 20120624061319) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -47,6 +47,21 @@ ActiveRecord::Schema.define(:version => 20120624060649) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
+
+  create_table "market_posts", :force => true do |t|
+    t.integer  "merchandise_id"
+    t.integer  "country_id"
+    t.integer  "item_id"
+    t.string   "provider"
+    t.integer  "stock"
+    t.decimal  "price",          :precision => 8, :scale => 3
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+  end
+
+  add_index "market_posts", ["country_id"], :name => "index_market_posts_on_country_id"
+  add_index "market_posts", ["item_id"], :name => "index_market_posts_on_item_id"
+  add_index "market_posts", ["merchandise_id"], :name => "index_market_posts_on_merchandise_id"
 
   create_table "merchandises", :force => true do |t|
     t.integer  "quality"
