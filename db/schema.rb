@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120706132533) do
+ActiveRecord::Schema.define(:version => 20120706154103) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -113,6 +113,19 @@ ActiveRecord::Schema.define(:version => 20120706132533) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
+
+  create_table "statistics", :force => true do |t|
+    t.integer  "country_id"
+    t.integer  "merchandise_id"
+    t.date     "date"
+    t.decimal  "minimum",        :precision => 8, :scale => 3
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+  end
+
+  add_index "statistics", ["country_id"], :name => "index_statistics_on_country_id"
+  add_index "statistics", ["merchandise_id", "country_id"], :name => "index_statistics_on_merchandise_id_and_country_id"
+  add_index "statistics", ["merchandise_id"], :name => "index_statistics_on_merchandise_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
