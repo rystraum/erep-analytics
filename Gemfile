@@ -13,6 +13,7 @@ gem 'rails_admin', '= 0.0.3' # rails g rails_admin:install
 gem 'thin'
 gem "spawn", :git => 'git://github.com/rfc2822/spawn'
 gem 'nokogiri'
+gem "twitter-bootstrap-rails"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
