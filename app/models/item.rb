@@ -15,6 +15,12 @@ class Item < ActiveRecord::Base
     html = data
 
     return [] unless html.match(/successfully/).nil?
+    return [] unless html.match(/There are no market offers matching your search./).nil?
+    return [] unless html.match(/You can buy maximum [0-9]* products for this offer/).nil?
+    return [] unless html.match(/companies for sale/).nil?
+    return [] unless html.match(/This offer doesn't exist anymore./).nil?
+    return [] unless html.match(/Storage capacity is limited./).nil?
+    return [] unless html.match(/buy a company/).nil?
 
     doc = Nokogiri::HTML(html)
 
@@ -37,19 +43,29 @@ class Item < ActiveRecord::Base
       country = Country.find_or_create_by_erep_country_id(country)
 
       spawn_block(nice: 19, kill: true) do
-        market_data = parse_data
+        begin
+          market_data = parse_data
 
-        post = nil
-        ActiveRecord::Base.transaction do
-          market_data.each do |m|
-            post = self.market_posts.build provider: m[:provider], price: m[:price], stock: m[:stock]
-            post.country = country
-            post.merchandise = merchandise
-            post.save
+          post = nil
+          ActiveRecord::Base.transaction do
+            market_data.each do |m|
+              post = self.market_posts.build provider: m[:provider], price: m[:price], stock: m[:stock]
+              post.country = country
+              post.merchandise = merchandise
+              post.save
+            end
           end
+        rescue ActiveRecord::StatementInvalid
+          sleep 1.0
+          retry
+        rescue Mysql2::Error
+          sleep 1.0
+          retry
         end
       end
     end
+  # rescue NoMethodError
+    # require 'pry'; binding.pry
   end
 
   def record_date
