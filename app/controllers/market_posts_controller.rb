@@ -8,6 +8,12 @@ class MarketPostsController < ApplicationController
 
   def candlestick
     @data = Candlestick.find :all, conditions: [ "country_id = ? and merchandise_id = ?", @country.id, @merc.id], order: "date desc"
+    respond_with @data
+  end
+
+  def statistics
+    @data = Statistic.find :all, conditions: [ "country_id = ? and merchandise_id = ?", @country.id, @merc.id], order: "date desc"
+    respond_with @data
   end
 
 private

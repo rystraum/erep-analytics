@@ -5,7 +5,7 @@ class MarketPost < ActiveRecord::Base
   belongs_to :item
 
   delegate :record_date, to: :item
-  # after_commit :update_candlestick
+  after_commit :update_statistics
 
   def as_json(opts = {})
     super.merge({ record_date: self.record_date, country: self.country.to_s, item: self.merchandise.to_s })
@@ -38,6 +38,12 @@ class MarketPost < ActiveRecord::Base
         retry
       end
     # end
+  end
+
+  def update_statistics
+    stat = Statistic.find :first, conditions: ["date = ? and country_id = ? and merchandise_id = ?", record_date.to_date, country, merchandise]
+    stat = Statistic.create date: record_date.to_date, country: country, merchandise: merchandise unless stat
+    stat.minimum = price and stat.save if stat.minimum.nil? || stat.minimum > price
   end
 end
 
