@@ -4,10 +4,10 @@ class CreateCandlesticks < ActiveRecord::Migration
       t.date :date
       t.references :merchandise
       t.references :country
-      t.decimal :high
-      t.decimal :low
-      t.decimal :open
-      t.decimal :close
+      t.decimal :high, precision: 8, scale: 3
+      t.decimal :low, precision: 8, scale: 3
+      t.decimal :open, precision: 8, scale: 3
+      t.decimal :close, precision: 8, scale: 3
       t.integer :volume
 
       t.timestamps

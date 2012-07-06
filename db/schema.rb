@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120706071959) do
+ActiveRecord::Schema.define(:version => 20120706132533) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -30,6 +30,23 @@ ActiveRecord::Schema.define(:version => 20120706071959) do
 
   add_index "admins", ["email"], :name => "index_admins_on_email", :unique => true
   add_index "admins", ["reset_password_token"], :name => "index_admins_on_reset_password_token", :unique => true
+
+  create_table "candlesticks", :force => true do |t|
+    t.date     "date"
+    t.integer  "merchandise_id"
+    t.integer  "country_id"
+    t.decimal  "high",           :precision => 8, :scale => 3
+    t.decimal  "low",            :precision => 8, :scale => 3
+    t.decimal  "open",           :precision => 8, :scale => 3
+    t.decimal  "close",          :precision => 8, :scale => 3
+    t.integer  "volume"
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+  end
+
+  add_index "candlesticks", ["country_id"], :name => "index_candlesticks_on_country_id"
+  add_index "candlesticks", ["merchandise_id", "country_id"], :name => "index_candlesticks_on_merchandise_id_and_country_id"
+  add_index "candlesticks", ["merchandise_id"], :name => "index_candlesticks_on_merchandise_id"
 
   create_table "countries", :force => true do |t|
     t.integer  "erep_country_id"
