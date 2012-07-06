@@ -49,7 +49,7 @@ private
   def record_market_data
     if market_posts.empty?
       merchandise = Merchandise.find_by_erep_item_code_and_quality(item_type,item_quality) || Merchandise.create(erep_item_code: item_type, quality: item_quality)
-      country_obj = Country.find_or_create_by_erep_country_id(self.country[1..-1])
+      country_obj = Country.find_or_create_by_erep_country_id(self.country)
 
       spawn_block(nice: 19, kill: true) do
         begin
