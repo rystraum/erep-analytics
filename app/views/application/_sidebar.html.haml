@@ -1,0 +1,19 @@
+%ul.nav.nav-pills
+  %li
+    %a{ href: "#", "data-toggle" => "collapse", "data-target" => "#merc_list" } Items
+  %li
+    %a{ href: "#", "data-toggle" => "collapse", "data-target" => "#country_list" } Countries
+
+%ul.nav.nav-list.collapse#merc_list
+  - @mercs.each do |c|
+    %li= link_to c, c
+  %li.divider
+
+%ul.nav.nav-list.collapse#country_list
+  - @countries.each do |c|
+    %li= link_to c.erep_country_id
+  %li.divider
+
+.well
+  Oooooooohh.
+
