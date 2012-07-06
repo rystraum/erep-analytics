@@ -14,5 +14,7 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require pretty_dates
+//= require jqplot/jqplot
+//= require_tree ./jqplot
 //= require_tree .
 
