@@ -12,9 +12,7 @@ $ ->
 -#      $("#stage").html(html)
 
 build_market_post_html = (data) ->
-  html = "<table class='table table-striped'><thead>"
-  html += "<tr><th>Record Date</th><th>Price</th><th>Stock</th><th>Player ID</th><th>Country</th><th>Item</th></tr>"
-  html += "</thead>"
+  html = ""
   $.each data, (index, value) ->
     record_date = new Date(value.record_date)
     html += "<tr>"
