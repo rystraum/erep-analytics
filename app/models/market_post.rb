@@ -5,5 +5,9 @@ class MarketPost < ActiveRecord::Base
   belongs_to :item
 
   delegate :record_date, to: :item
+
+  def as_json(opts = {})
+    super.merge({ record_date: self.record_date, country: self.country.to_s, item: self.merchandise.to_s })
+  end
 end
 
