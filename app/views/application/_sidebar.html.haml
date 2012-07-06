@@ -1,19 +1,14 @@
-%ul.nav.nav-pills
-  %li
-    %a{ href: "#", "data-toggle" => "collapse", "data-target" => "#merc_list" } Items
-  %li
-    %a{ href: "#", "data-toggle" => "collapse", "data-target" => "#country_list" } Countries
-
-%ul.nav.nav-list.collapse#merc_list
+- @merc ||= nil
+- @country ||= nil
+.well#merc_selection
   - @mercs.each do |c|
-    %li= link_to c, c
-  %li.divider
+    %label.radio
+      = radio_button_tag "merchandise", c.id, @merc == c
+      = c
 
-%ul.nav.nav-list.collapse#country_list
+.well#country_selection
   - @countries.each do |c|
-    %li= link_to c.erep_country_id
-  %li.divider
-
-.well
-  Oooooooohh.
+    %label.radio
+      = radio_button_tag "country", c.id, @country == c
+      = c
 
