@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class StatisticsTest < ActiveSupport::TestCase
+class StatisticTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

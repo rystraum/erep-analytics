@@ -11,7 +11,6 @@ class CreateStatistics < ActiveRecord::Migration
     add_index :statistics, :country_id
     add_index :statistics, :merchandise_id
     add_index :statistics, [:merchandise_id, :country_id]
-
   end
 end
 
