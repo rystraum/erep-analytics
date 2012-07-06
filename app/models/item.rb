@@ -5,12 +5,21 @@ class Item < ActiveRecord::Base
   before_create :sanitize_fields
   after_commit :record_market_data
 
+  def record_date; created_at end
+
   def sanitize_fields
     self.country = self.country.split("/").last.to_i
     self.item_quality = self.item_quality.split("/").last.to_i
     self.item_type = self.item_type.split("/").last.to_i
   end
 
+  def clean_and_save
+    if self.country[0] == "/" || self.item_quality[0] == "/" || self.item_type[0] == "/"
+      sanitize_fields and self.save
+    end
+  end
+
+private
   def parse_data
     html = data
 
@@ -40,7 +49,7 @@ class Item < ActiveRecord::Base
   def record_market_data
     if market_posts.empty?
       merchandise = Merchandise.find_by_erep_item_code_and_quality(item_type,item_quality) || Merchandise.create(erep_item_code: item_type, quality: item_quality)
-      country = Country.find_or_create_by_erep_country_id(country)
+      country_obj = Country.find_or_create_by_erep_country_id(self.country[1..-1])
 
       spawn_block(nice: 19, kill: true) do
         begin
@@ -50,7 +59,7 @@ class Item < ActiveRecord::Base
           ActiveRecord::Base.transaction do
             market_data.each do |m|
               post = self.market_posts.build provider: m[:provider], price: m[:price], stock: m[:stock]
-              post.country = country
+              post.country = country_obj
               post.merchandise = merchandise
               post.save
             end
@@ -66,10 +75,6 @@ class Item < ActiveRecord::Base
     end
   # rescue NoMethodError
     # require 'pry'; binding.pry
-  end
-
-  def record_date
-    created_at
   end
 end
 
