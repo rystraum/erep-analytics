@@ -5,9 +5,10 @@ Erep::Application.routes.draw do
 
   devise_for :admins
 
-  root to: "home#index"
   post "/receive" => "home#receive"
+  get "/filter/:merchandise_id/:country_id" => "market_posts#filter"
 
   resources :merchandises
+  root to: "market_posts#filter"
 end
 
