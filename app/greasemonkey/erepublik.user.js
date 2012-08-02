@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name        Erepublik
 // @namespace   erep
-// @include     http://economy.erepublik.com/en/*
-// @version     1
+// @include     http://www.erepublik.com/en/economy/*
+// @version     2
 // ==/UserScript==
 
 var console = unsafeWindow.console;
