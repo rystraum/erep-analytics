@@ -2,7 +2,7 @@ class MarketPostsController < ApplicationController
   respond_to :html, :json
   before_filter :get_merc_and_country
   def index
-    @data = MarketPost.find :all, conditions: [ "country_id = ? and merchandise_id = ?", @country.id, @merc.id], order: "created_at desc, price asc"
+    @data = MarketPost.find :all, conditions: [ "country_id = ? and merchandise_id = ?", @country.id, @merc.id], order: "created_at desc, price asc", limit: 100
     respond_with @data
   end
 
